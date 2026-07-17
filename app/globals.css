@@ -1,26 +1,105 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* Font */
+  --font-sans: var(--font-inter), sans-serif;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Page and surface backgrounds */
+  --color-background: #f6f7fb;
+  --color-surface: #ffffff;
+  --color-surface-secondary: #f9fafb;
+  --color-surface-tertiary: #f2f5f7;
+  --color-surface-muted: #f4f5fb;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Borders */
+  --color-border: #e7eaf3;
+  --color-border-light: #e5e7eb;
+  --color-border-muted: #dfe1e7;
+
+  /* Text */
+  --color-text-primary: #101828;
+  --color-text-secondary: #6a7282;
+  --color-text-muted: #99a1af;
+  --color-text-dark: #364153;
+  --color-text-darker: #36394a;
+  --color-text-darkest: #111827;
+  --color-text-black: #131316;
+  --color-text-slate: #272835;
+  --color-text-slate-medium: #666d80;
+
+  /* Primary accent */
+  --color-accent: #7c5cfc;
+  --color-accent-dark: #5e4cff;
+  --color-accent-light: #f3e8ff;
+  --color-accent-muted: #faf5ff;
+  --color-accent-foreground: #ffffff;
+
+  /* Success */
+  --color-success: #10b981;
+  --color-success-alt: #00bc7d;
+  --color-success-dark: #007a55;
+  --color-success-darker: #009966;
+  --color-success-light: #d0fae5;
+  --color-success-lightest: #ecfdf5;
+  --color-success-foreground: #007a55;
+
+  /* Info */
+  --color-info: #61a8ff;
+  --color-info-dark: #155dfc;
+  --color-info-medium: #2b7fff;
+  --color-info-light: #dbeafe;
+  --color-info-lightest: #eff6ff;
+  --color-info-foreground: #155dfc;
+  --color-info-muted: #94a2c5;
+
+  /* Warning and error */
+  --color-warning: #ff8904;
+  --color-warning-foreground: #ffffff;
+  --color-error: #ef4444;
+  --color-error-foreground: #ffffff;
+
+  /* LinkedIn brand */
+  --color-linkedin: #0a66c2;
+  --color-linkedin-light: #dce6f1;
+  --color-linkedin-foreground: #ffffff;
+
+  /* Dark overlays */
+  --color-overlay: #111827;
+  --color-overlay-dark: #131316;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+  --shadow-preview: 0 18px 34px -14px rgba(16, 24, 40, 0.28);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+}
+
+@layer utilities {
+  .hero-glow {
+    background: radial-gradient(circle at 72% 24%, color-mix(in srgb, var(--color-info-light) 88%, transparent) 0, transparent 31%), radial-gradient(circle at 32% 30%, color-mix(in srgb, var(--color-accent-light) 86%, transparent) 0, transparent 30%), var(--color-surface);
+  }
+
+  .section-divider {
+    background-color: var(--color-surface);
+    background-image: repeating-linear-gradient(135deg, transparent 0 5px, var(--color-surface-secondary) 5px 6px);
+  }
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
