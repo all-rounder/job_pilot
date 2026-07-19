@@ -24,6 +24,7 @@ Read in this exact order before any implementation:
 
 - Never use hardcoded hex values or raw Tailwind color classes
 - Update `progress-tracker.md` and `ui-registry.md` after every feature
+- This project has no test runner; gate changes with lint, TypeScript, production build, and `/check verify` as recorded in `test-preferences.json`
 - Before any third party library — load its installed skill first,
   then read `context/library-docs.md` for project-specific rules
 - If the same problem persists after one corrective prompt —
@@ -37,3 +38,7 @@ Read in this exact order before any implementation:
 - `/recover` — when something breaks after one failed correction.
 - `/remember save` — when a feature spans multiple sessions.
 - `/remember restore` — when returning after a multi-session feature.
+
+## Context files
+
+- [insforge/AGENTS.md](insforge/AGENTS.md): InsForge migration conventions and Feature 04 data ownership boundaries

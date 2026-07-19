@@ -7,8 +7,9 @@ Update this file after every completed feature. Any AI agent reading this should
 ## Current Status
 
 **Phase:** Phase 1, Foundation
-**Last completed:** 01 Homepage
-**Next:** 02 Auth
+**Last completed:** 04 Database Schema
+**In progress:** None
+**Next:** 05 Profile Page, Full UI
 
 ---
 
@@ -17,9 +18,9 @@ Update this file after every completed feature. Any AI agent reading this should
 ### Phase 1 — Foundation
 
 - [x] 01 Homepage
-- [ ] 02 Auth
-- [ ] 03 PostHog Initialization
-- [ ] 04 Database Schema
+- [x] 02 Auth
+- [x] 03 PostHog Initialization
+- [x] 04 Database Schema
 
 ### Phase 2 — Profile Page
 
@@ -50,10 +51,19 @@ Update this file after every completed feature. Any AI agent reading this should
 
 ## Decisions Made During Build
 
-_Add decisions here as they are made during implementation._
+- Feature 02 uses the official InsForge SSR flow: Server Action OAuth start, one server callback exchange, HTTP only refresh and PKCE cookies, `proxy.ts` refresh, and protected Server Component checks.
+- Next.js 16 `proxy.ts` is an optimistic redirect and refresh layer, never the sole authorization boundary.
+- Feature 03 uses Next.js client instrumentation plus one shared React provider. Protected routes identify the current InsForge user, and sign out resets browser identity before ending the session.
+- Feature 04 uses one versioned PostgreSQL migration, forced row level security, and composite owner keys for relational data. Feature 06 owns authenticated resume access and PDF validation.
 
 ---
 
 ## Notes
+
+- Feature 02 passed lint, TypeScript, production build, and runtime verification. Google and GitHub OAuth both return to `/dashboard`; refresh preserves the session; sign out clears it; signed out protected routes redirect to `/login`.
+- The project intentionally uses a `typecheck+verify` quality gate without a test runner, recorded in `test-preferences.json`.
+- Feature 03 passed lint, strict TypeScript, and a production build. Event capture remains limited to the four names in `code-standards.md`; each owning feature will add its events when built.
+- A basic protected `/profile` account summary now bridges authentication to Feature 05. The full profile form and resume management remain planned work.
+- Feature 04 migration and private `resumes` bucket are live. Schema, constraint, cascade, storage, and two real authenticated user RLS assertions passed, along with lint, strict TypeScript, the production build, and `/check verify`.
 
 _Add notes here as the build progresses — workarounds, patterns, anything that differs from the context files._

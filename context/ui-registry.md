@@ -25,3 +25,16 @@ After building any component — update this file with the component name, file 
 - `components/homepage/Hero.tsx`: gradient hero, paired CTAs, framed dashboard preview
 - `components/homepage/Features.tsx`: alternating two column feature panels and supplied product imagery
 - `components/homepage/Testimonial.tsx`: success story and gradient closing CTA
+
+### Authentication
+
+- `app/(auth)/login/page.tsx`: responsive two panel sign in screen with brand context, provider actions, legal links, and an announced retryable error state
+- `components/auth/OAuthButton.tsx`: full width provider action using `min-h-12`, `rounded-lg`, token borders, hover accent, focus ring, disabled opacity, and `useFormStatus` loading copy
+- `components/auth/SignOutButton.tsx`: bordered session action using `min-h-11`, token hover and focus states, disabled opacity, and `useFormStatus` loading copy
+- `app/(protected)/dashboard/page.tsx`: temporary authenticated landing surface until Feature 14 replaces it with the full dashboard
+- `app/(protected)/profile/page.tsx`: basic authenticated account summary with branded header, identity details, profile readiness state, and dashboard navigation until Feature 05 adds the full form
+
+### Analytics infrastructure
+
+- `components/analytics/PostHogProvider.tsx`: root client context for the shared PostHog browser instance
+- `components/analytics/PostHogIdentify.tsx`: invisible protected route identity bridge with no visual classes

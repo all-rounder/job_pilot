@@ -36,36 +36,19 @@ Two separate instances — never mix them:
 
 ```typescript
 // lib/insforge-client.ts — browser context only
-import { createBrowserClient } from "@insforge/ssr";
+import { createBrowserClient } from "@insforge/sdk/ssr";
 
-export const insforge = createBrowserClient(
-  process.env.NEXT_PUBLIC_INSFORGE_URL!,
-  process.env.NEXT_PUBLIC_INSFORGE_ANON_KEY!,
-);
+export const insforge = createBrowserClient();
 ```
 
 ```typescript
 // lib/insforge-server.ts — server context only
-import { createServerClient } from "@insforge/ssr";
+import { createServerClient } from "@insforge/sdk/ssr";
 import { cookies } from "next/headers";
 
-export const createInsforgeServer = async () => {
-  const cookieStore = await cookies();
-  return createServerClient(
-    process.env.NEXT_PUBLIC_INSFORGE_URL!,
-    process.env.NEXT_PUBLIC_INSFORGE_ANON_KEY!,
-    {
-      cookies: {
-        getAll: () => cookieStore.getAll(),
-        setAll: (cookiesToSet) => {
-          cookiesToSet.forEach(({ name, value, options }) =>
-            cookieStore.set(name, value, options),
-          );
-        },
-      },
-    },
-  );
-};
+export async function createInsForgeServerClient() {
+  return createServerClient({ cookies: await cookies() });
+}
 ```
 
 **Rules:**
@@ -81,13 +64,22 @@ export const createInsforgeServer = async () => {
 
 ```typescript
 // Get current user in server context
-const insforge = await createInsforgeServer();
+const insforge = await createInsForgeServerClient();
 const {
   data: { user },
   error,
-} = await insforge.auth.getUser();
+} = await insforge.auth.getCurrentUser();
 if (!user) redirect("/login");
 ```
+
+For Next.js SSR OAuth, start the flow with `createAuthActions()` in a Server Action, store the returned PKCE verifier in an HTTP only cookie, and exchange `insforge_code` once in `/api/auth/callback`. Use `createRefreshAuthRouter()` for `/api/auth/refresh` and `updateSession()` from `@insforge/sdk/ssr/middleware` in `proxy.ts`.
+
+**Auth rules:**
+
+- SSR OAuth callbacks are completed on the server, never by the browser client
+- PKCE verifier and refresh token cookies are HTTP only
+- Delete the PKCE verifier immediately after callback exchange
+- Proxy refresh is optimistic; protected layouts, Server Actions, and Route Handlers still verify the current user
 
 ---
 
