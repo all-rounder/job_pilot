@@ -8,7 +8,7 @@ type MatchFilter = "all" | "strong" | "other";
 type SortOrder = "score" | "newest" | "oldest";
 
 type Job = {
-  id: number;
+  id: string;
   company: string;
   role: string;
   score: number;
@@ -17,31 +17,31 @@ type Job = {
   age: number;
 };
 
-const jobs: Job[] = [
-  { id: 1, company: "Vercel", role: "Senior Frontend Engineer", score: 94, salary: "$160k - $200k", date: "2 hours ago", age: 0 },
-  { id: 2, company: "Stripe", role: "Staff UI Engineer", score: 88, salary: "$180k - $240k", date: "Yesterday", age: 1 },
-  { id: 3, company: "Linear", role: "Product Engineer", score: 96, salary: "$150k - $190k", date: "Yesterday", age: 1 },
-  { id: 4, company: "Notion", role: "Frontend Developer", score: 72, salary: "$130k - $170k", date: "2 days ago", age: 2 },
-  { id: 5, company: "OpenAI", role: "Design Engineer", score: 91, salary: "$200k - $280k", date: "3 days ago", age: 3 },
-  { id: 6, company: "Figma", role: "Software Engineer, Editor", score: 85, salary: "$170k - $220k", date: "4 days ago", age: 4 },
-  { id: 7, company: "Ramp", role: "Frontend Engineer", score: 89, salary: "$165k - $215k", date: "5 days ago", age: 5 },
-  { id: 8, company: "Loom", role: "Senior Product Engineer", score: 78, salary: "$145k - $185k", date: "6 days ago", age: 6 },
-  { id: 9, company: "Shopify", role: "Staff Frontend Developer", score: 83, salary: "$155k - $210k", date: "1 week ago", age: 7 },
-  { id: 10, company: "Webflow", role: "UI Platform Engineer", score: 87, salary: "$150k - $205k", date: "1 week ago", age: 8 },
-  { id: 11, company: "GitLab", role: "Senior UX Engineer", score: 76, salary: "$140k - $180k", date: "1 week ago", age: 9 },
-  { id: 12, company: "Dropbox", role: "Frontend Systems Engineer", score: 81, salary: "$160k - $220k", date: "1 week ago", age: 10 },
-  { id: 13, company: "Discord", role: "Senior UI Engineer", score: 90, salary: "$170k - $230k", date: "2 weeks ago", age: 11 },
-  { id: 14, company: "Atlassian", role: "Product Frontend Engineer", score: 74, salary: "$135k - $175k", date: "2 weeks ago", age: 12 },
-  { id: 15, company: "Canva", role: "Design Systems Engineer", score: 93, salary: "$150k - $205k", date: "2 weeks ago", age: 13 },
-  { id: 16, company: "Airtable", role: "Frontend Engineer", score: 79, salary: "$145k - $195k", date: "2 weeks ago", age: 14 },
-  { id: 17, company: "Asana", role: "Senior Product Engineer", score: 86, salary: "$155k - $210k", date: "3 weeks ago", age: 15 },
-  { id: 18, company: "Twilio", role: "UI Infrastructure Engineer", score: 71, salary: "$135k - $180k", date: "3 weeks ago", age: 16 },
-  { id: 19, company: "Palantir", role: "Frontend Software Engineer", score: 82, salary: "$175k - $235k", date: "3 weeks ago", age: 17 },
-  { id: 20, company: "HubSpot", role: "Senior Web Engineer", score: 77, salary: "$140k - $185k", date: "3 weeks ago", age: 18 },
-  { id: 21, company: "Brex", role: "Product UI Engineer", score: 92, salary: "$170k - $230k", date: "1 month ago", age: 19 },
-  { id: 22, company: "Plaid", role: "Frontend Engineer", score: 84, salary: "$160k - $215k", date: "1 month ago", age: 20 },
-  { id: 23, company: "Robinhood", role: "Senior UI Developer", score: 73, salary: "$150k - $205k", date: "1 month ago", age: 21 },
-  { id: 24, company: "Cloudflare", role: "Design Systems Developer", score: 88, salary: "$160k - $215k", date: "1 month ago", age: 22 },
+const placeholderJobs: Job[] = [
+  { id: "placeholder-1", company: "Vercel", role: "Senior Frontend Engineer", score: 94, salary: "$160k - $200k", date: "2 hours ago", age: 0 },
+  { id: "placeholder-2", company: "Stripe", role: "Staff UI Engineer", score: 88, salary: "$180k - $240k", date: "Yesterday", age: 1 },
+  { id: "placeholder-3", company: "Linear", role: "Product Engineer", score: 96, salary: "$150k - $190k", date: "Yesterday", age: 1 },
+  { id: "placeholder-4", company: "Notion", role: "Frontend Developer", score: 72, salary: "$130k - $170k", date: "2 days ago", age: 2 },
+  { id: "placeholder-5", company: "OpenAI", role: "Design Engineer", score: 91, salary: "$200k - $280k", date: "3 days ago", age: 3 },
+  { id: "placeholder-6", company: "Figma", role: "Software Engineer, Editor", score: 85, salary: "$170k - $220k", date: "4 days ago", age: 4 },
+  { id: "placeholder-7", company: "Ramp", role: "Frontend Engineer", score: 89, salary: "$165k - $215k", date: "5 days ago", age: 5 },
+  { id: "placeholder-8", company: "Loom", role: "Senior Product Engineer", score: 78, salary: "$145k - $185k", date: "6 days ago", age: 6 },
+  { id: "placeholder-9", company: "Shopify", role: "Staff Frontend Developer", score: 83, salary: "$155k - $210k", date: "1 week ago", age: 7 },
+  { id: "placeholder-10", company: "Webflow", role: "UI Platform Engineer", score: 87, salary: "$150k - $205k", date: "1 week ago", age: 8 },
+  { id: "placeholder-11", company: "GitLab", role: "Senior UX Engineer", score: 76, salary: "$140k - $180k", date: "1 week ago", age: 9 },
+  { id: "placeholder-12", company: "Dropbox", role: "Frontend Systems Engineer", score: 81, salary: "$160k - $220k", date: "1 week ago", age: 10 },
+  { id: "placeholder-13", company: "Discord", role: "Senior UI Engineer", score: 90, salary: "$170k - $230k", date: "2 weeks ago", age: 11 },
+  { id: "placeholder-14", company: "Atlassian", role: "Product Frontend Engineer", score: 74, salary: "$135k - $175k", date: "2 weeks ago", age: 12 },
+  { id: "placeholder-15", company: "Canva", role: "Design Systems Engineer", score: 93, salary: "$150k - $205k", date: "2 weeks ago", age: 13 },
+  { id: "placeholder-16", company: "Airtable", role: "Frontend Engineer", score: 79, salary: "$145k - $195k", date: "2 weeks ago", age: 14 },
+  { id: "placeholder-17", company: "Asana", role: "Senior Product Engineer", score: 86, salary: "$155k - $210k", date: "3 weeks ago", age: 15 },
+  { id: "placeholder-18", company: "Twilio", role: "UI Infrastructure Engineer", score: 71, salary: "$135k - $180k", date: "3 weeks ago", age: 16 },
+  { id: "placeholder-19", company: "Palantir", role: "Frontend Software Engineer", score: 82, salary: "$175k - $235k", date: "3 weeks ago", age: 17 },
+  { id: "placeholder-20", company: "HubSpot", role: "Senior Web Engineer", score: 77, salary: "$140k - $185k", date: "3 weeks ago", age: 18 },
+  { id: "placeholder-21", company: "Brex", role: "Product UI Engineer", score: 92, salary: "$170k - $230k", date: "1 month ago", age: 19 },
+  { id: "placeholder-22", company: "Plaid", role: "Frontend Engineer", score: 84, salary: "$160k - $215k", date: "1 month ago", age: 20 },
+  { id: "placeholder-23", company: "Robinhood", role: "Senior UI Developer", score: 73, salary: "$150k - $205k", date: "1 month ago", age: 21 },
+  { id: "placeholder-24", company: "Cloudflare", role: "Design Systems Developer", score: 88, salary: "$160k - $215k", date: "1 month ago", age: 22 },
 ];
 
 const iconPaths = {
@@ -70,6 +70,57 @@ function readSortOrder(value: string): SortOrder {
   return value === "newest" || value === "oldest" ? value : "score";
 }
 
+type SearchJob = {
+  id: string;
+  title: string;
+  company: string;
+  salary: string | null;
+  match_score: number | null;
+  found_at: string;
+};
+
+type SearchData = {
+  jobs: SearchJob[];
+  message: string;
+  warning: string | null;
+};
+
+type SearchSuccess = {
+  success: true;
+  data: SearchData;
+};
+
+type SearchError = {
+  success: false;
+  error: string;
+};
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null;
+}
+
+function isSearchSuccess(value: unknown): value is SearchSuccess {
+  if (!isRecord(value) || value.success !== true || !isRecord(value.data)) return false;
+  return typeof value.data.message === "string"
+    && (value.data.warning === null || typeof value.data.warning === "string")
+    && Array.isArray(value.data.jobs);
+}
+
+function isSearchError(value: unknown): value is SearchError {
+  return isRecord(value) && value.success === false && typeof value.error === "string";
+}
+
+function formatFoundDate(value: string): string {
+  const timestamp = Date.parse(value);
+  if (Number.isNaN(timestamp)) return "Just now";
+  const hours = Math.max(0, Math.floor((Date.now() - timestamp) / (1000 * 60 * 60)));
+  if (hours < 1) return "Just now";
+  if (hours === 1) return "1 hour ago";
+  if (hours < 24) return `${hours} hours ago`;
+  const days = Math.floor(hours / 24);
+  return days === 1 ? "Yesterday" : `${days} days ago`;
+}
+
 function AppHeader() {
   const nav = [
     { href: "/dashboard", label: "Dashboard", icon: "grid" as const },
@@ -94,11 +145,14 @@ function AppHeader() {
 export function FindJobsPage() {
   const [jobTitle, setJobTitle] = useState("");
   const [location, setLocation] = useState("");
+  const [jobs, setJobs] = useState<Job[]>(placeholderJobs);
   const [filter, setFilter] = useState("");
   const [matchFilter, setMatchFilter] = useState<MatchFilter>("all");
   const [sortOrder, setSortOrder] = useState<SortOrder>("score");
   const [page, setPage] = useState(1);
   const [searchMessage, setSearchMessage] = useState("Found 8 jobs and saved 4 strong matches.");
+  const [searchError, setSearchError] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
   const pageSize = 6;
 
   const visibleJobs = useMemo(() => {
@@ -108,7 +162,7 @@ export function FindJobsPage() {
       return matchesText && matchesScore;
     });
     return [...filtered].sort((first, second) => sortOrder === "score" ? second.score - first.score : sortOrder === "newest" ? first.age - second.age : second.age - first.age);
-  }, [filter, matchFilter, sortOrder]);
+  }, [filter, jobs, matchFilter, sortOrder]);
 
   const pageCount = Math.max(1, Math.ceil(visibleJobs.length / pageSize));
   const safePage = Math.min(page, pageCount);
@@ -116,9 +170,44 @@ export function FindJobsPage() {
   const resultStart = visibleJobs.length === 0 ? 0 : (safePage - 1) * pageSize + 1;
   const resultEnd = Math.min(safePage * pageSize, visibleJobs.length);
 
-  function submitSearch(event: FormEvent<HTMLFormElement>): void {
+  async function submitSearch(event: FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
-    setSearchMessage(`Found 8 jobs and saved 4 strong matches for ${jobTitle.trim() || "your search"}.`);
+    if (!jobTitle.trim()) {
+      setSearchError("Enter a job title before searching.");
+      return;
+    }
+
+    setIsSearching(true);
+    setSearchError("");
+    try {
+      const response = await fetch("/api/agent/find", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ jobTitle, location }),
+      });
+      const result: unknown = await response.json();
+      if (!response.ok || !isSearchSuccess(result)) {
+        const error = isSearchError(result) ? result.error : "We could not complete the job search. Please retry.";
+        throw new Error(error);
+      }
+
+      setJobs(result.data.jobs.map((job) => ({
+        id: job.id,
+        company: job.company,
+        role: job.title,
+        score: job.match_score ?? 0,
+        salary: job.salary ?? "Not listed",
+        date: formatFoundDate(job.found_at),
+        age: Date.now() - Date.parse(job.found_at),
+      })));
+      setPage(1);
+      setSearchMessage(result.data.message);
+      setSearchError(result.data.warning ?? "");
+    } catch (error) {
+      setSearchError(error instanceof Error ? error.message : "We could not complete the job search. Please retry.");
+    } finally {
+      setIsSearching(false);
+    }
   }
 
   function updateFilter(value: string): void {
@@ -143,9 +232,10 @@ export function FindJobsPage() {
         <div className="grid gap-5 lg:grid-cols-[1fr_1fr_auto] lg:items-end">
           <label className="block"><span className="mb-2 block text-xs font-semibold uppercase tracking-wide text-text-dark">Job title</span><span className="relative block"><Icon name="search" className="pointer-events-none absolute left-4 top-1/2 size-5 -translate-y-1/2 text-text-muted" /><input value={jobTitle} onChange={(event) => setJobTitle(event.target.value)} placeholder="Frontend Engineer" className="min-h-14 w-full rounded-md border border-border bg-surface px-12 text-base text-text-primary shadow-sm outline-none placeholder:text-text-muted focus:border-accent focus:ring-2 focus:ring-accent/20" /></span></label>
           <label className="block"><span className="mb-2 block text-xs font-semibold uppercase tracking-wide text-text-dark">Location</span><input value={location} onChange={(event) => setLocation(event.target.value)} placeholder="Remote, New York..." className="min-h-14 w-full rounded-md border border-border bg-surface px-4 text-base text-text-primary shadow-sm outline-none placeholder:text-text-muted focus:border-accent focus:ring-2 focus:ring-accent/20" /></label>
-          <button type="submit" className="inline-flex min-h-14 items-center justify-center gap-2 rounded-md bg-accent px-7 text-base font-semibold text-accent-foreground shadow-sm transition-colors hover:bg-accent-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"><Icon name="search" />Find Jobs</button>
+          <button type="submit" disabled={isSearching} className="inline-flex min-h-14 items-center justify-center gap-2 rounded-md bg-accent px-7 text-base font-semibold text-accent-foreground shadow-sm transition-colors hover:bg-accent-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"><Icon name="search" />{isSearching ? "Searching..." : "Find Jobs"}</button>
         </div>
-        <div role="status" aria-live="polite" className="mt-5 flex items-center gap-3 rounded-md border border-success-light bg-success-lightest px-4 py-4 text-base font-medium text-success-darker"><Icon name="spark" className="size-5 shrink-0" />{searchMessage}</div>
+        <div role="status" aria-live="polite" className="mt-5 flex items-center gap-3 rounded-md border border-success-light bg-success-lightest px-4 py-4 text-base font-medium text-success-darker"><Icon name="spark" className="size-5 shrink-0" />{isSearching ? "Searching Adzuna and scoring your matches..." : searchMessage}</div>
+        {searchError ? <p role="alert" className="mt-3 rounded-md border border-error-light bg-error-lightest px-4 py-3 text-sm font-medium text-error-darker">{searchError}</p> : null}
       </form>
 
       <section aria-labelledby="results-heading" className="mt-6 rounded-xl border border-border bg-surface shadow-sm">

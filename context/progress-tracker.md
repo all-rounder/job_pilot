@@ -8,8 +8,8 @@ Update this file after every completed feature. Any AI agent reading this should
 
 **Phase:** Phase 3, Find Jobs Page
 **Last completed:** 09 Find Jobs Page Full UI
-**In progress:** None
-**Next:** 10 Adzuna Job Discovery
+**In progress:** 10 Adzuna Job Discovery
+**Next:** 11 Filter + Sort + Pagination
 
 ---
 
@@ -32,7 +32,7 @@ Update this file after every completed feature. Any AI agent reading this should
 ### Phase 3 — Find Jobs Page
 
 - [x] 09 Find Jobs Page — Full UI
-- [ ] 10 Adzuna Job Discovery
+- [~] 10 Adzuna Job Discovery, implementation complete, authenticated runtime verification passed
 - [ ] 11 Filter + Sort + Pagination
 
 ### Phase 4 — Job Details Page
@@ -70,5 +70,6 @@ Update this file after every completed feature. Any AI agent reading this should
 - Feature 07 adds authenticated extraction from the active private PDF with externalized `pdf-parse`, GPT-4o Structured Outputs, strict Zod validation, an overwrite warning, and review before save. Lint, strict TypeScript, production build, synthetic PDF parsing, live GPT-4o schema parsing, signed out denial, the active resume action, overwrite confirmation, and authenticated form population passed. The engineer confirmed the complete extraction journey in the real profile page.
 - Feature 08 adds authenticated generation from the complete saved profile with GPT-4o Structured Outputs, a deterministic `@react-pdf/renderer` A4 template, one page validation, unique owner scoped storage keys, exact returned key activation, prior object cleanup, and immediate view and extraction access. User runtime verification plus live database and storage inspection confirmed one active pointer, one matching object, and no duplicate orphan files. Lint, strict TypeScript, production build, live GPT-4o generation, PDF parsing, and visual inspection passed.
 - Feature 09 adds the protected `/find-jobs` UI facade from `context/designs/find-jobs.png`, with typed mock results, local filtering, sorting, search feedback, responsive table overflow, and pagination. Real discovery remains Feature 10.
+- Feature 10 adds the authenticated Adzuna search route, GPT-4o scoring, owner scoped persistence, duplicate safe retries, partial result warnings, PostHog events, and real search wiring in the Find Jobs facade. Lint, strict TypeScript, production build, authenticated live search, signed out denial, and duplicate retry verification pass. Duplicate retries now return the existing owner scoped jobs for display without creating new rows. AC-9 partial scoring and AC-10 provider failure paths are implemented but their forced runtime scenarios are deferred until after the remaining features are built. Feature 10 remains incomplete and must be revisited before final acceptance.
 
 _Add notes here as the build progresses — workarounds, patterns, anything that differs from the context files._
