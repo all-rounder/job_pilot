@@ -32,7 +32,16 @@ After building any component — update this file with the component name, file 
 - `components/auth/OAuthButton.tsx`: full width provider action using `min-h-12`, `rounded-lg`, token borders, hover accent, focus ring, disabled opacity, and `useFormStatus` loading copy
 - `components/auth/SignOutButton.tsx`: bordered session action using `min-h-11`, token hover and focus states, disabled opacity, and `useFormStatus` loading copy
 - `app/(protected)/dashboard/page.tsx`: temporary authenticated landing surface until Feature 14 replaces it with the full dashboard
-- `app/(protected)/profile/page.tsx`: basic authenticated account summary with branded header, identity details, profile readiness state, and dashboard navigation until Feature 05 adds the full form
+- `app/(protected)/profile/page.tsx`: protected profile route with page metadata, authenticated InsForge profile loading, empty state fallback, and derived completion data
+
+### Profile
+
+- `components/profile/ProfilePage.tsx`: complete responsive profile surface with active navigation, live completion status, private resume upload, view, replace and delete controls, confirmed AI extraction into a reviewable controlled form draft, saved profile PDF generation with replacement confirmation, explicit profile save feedback, and a semantic grouped career profile form
+- Resume extraction uses the existing token based card, a conditional `min-h-11` accent action, native overwrite confirmation, disabled loading state, and an atomic polite live status region
+- Resume generation reuses the resume card action row, gates on saved profile completion, confirms active resume replacement, locks duplicate requests, and announces success or error through an atomic polite live region
+- Profile fields use `min-h-11`, `rounded-md`, token borders and surfaces, token focus rings, responsive grids, and native form controls
+- `app/(protected)/profile/loading.tsx`: token based loading skeleton for the authenticated profile route
+- `app/api/resume/route.ts`: authenticated private PDF delivery surface with owner key validation and private no store response headers
 
 ### Analytics infrastructure
 

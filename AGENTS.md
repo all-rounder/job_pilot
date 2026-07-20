@@ -23,6 +23,7 @@ Read in this exact order before any implementation:
 ## Rules That Never Change
 
 - Never use hardcoded hex values or raw Tailwind color classes
+- Do not ask the engineer to decide minor implementation details when project context, existing patterns, or senior engineering judgment settles them. Choose the recommended option and record the decision in the spec. Ask only about material product or business choices.
 - Update `progress-tracker.md` and `ui-registry.md` after every feature
 - This project has no test runner; gate changes with lint, TypeScript, production build, and `/check verify` as recorded in `test-preferences.json`
 - Before any third party library — load its installed skill first,
@@ -42,3 +43,4 @@ Read in this exact order before any implementation:
 ## Context files
 
 - [insforge/AGENTS.md](insforge/AGENTS.md): InsForge migration conventions and Feature 04 data ownership boundaries
+- [agent/AGENTS.md](agent/AGENTS.md): server side AI extraction conventions and Feature 07 privacy boundaries

@@ -1,5 +1,7 @@
 # Resume storage
 
+**Superseded in part by [spec 0003](../0003-profile-save-logic.md)**: InsForge automatically renames duplicate keys. Feature 06 therefore uses unique owner scoped keys and stores the returned key. The private bucket, validation limits, and authenticated access rules below remain in force.
+
 ## Summary
 
 Feature 04 creates one private resume bucket. Feature 06 will add the authenticated server path that gives each user one predictable resume object without exposing a public URL.
