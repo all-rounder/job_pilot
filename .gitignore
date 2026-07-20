@@ -41,19 +41,19 @@ yarn-error.log*
 next-env.d.ts
 
 # InsForge & AI agent skills
-/.insforge
-/.agent
-/.agents
-/.augment
-/.claude
-/.cline
-/.github/copilot*
-/.kilocode
-/.qoder
-/.qwen
-/.roo
-/.trae
-/.windsurf
+.insforge
+.agent
+.agents
+.augment
+.claude
+.cline
+.github/copilot*
+.kilocode
+.qoder
+.qwen
+.roo
+.trae
+.windsurf
 
 # npm cache
-/.npm-cache-insforge
+.npm-cache-insforge
