@@ -47,3 +47,10 @@ After building any component — update this file with the component name, file 
 
 - `components/analytics/PostHogProvider.tsx`: root client context for the shared PostHog browser instance
 - `components/analytics/PostHogIdentify.tsx`: invisible protected route identity bridge with no visual classes
+
+### Find Jobs
+
+- `app/(protected)/find-jobs/page.tsx`: protected route metadata and server page wrapper
+- `components/find-jobs/FindJobsPage.tsx`: token based Find Jobs header, search controls, success banner, filter toolbar, mock results table, score bars, and pagination with local interactions
+- Find Jobs inputs use `min-h-11` or `min-h-14`, `rounded-md`, token borders and surfaces, token focus rings, and native select controls
+- Find Jobs result rows use `border-border`, `bg-surface-secondary` hover states, token score colors, and horizontal overflow below the desktop table width

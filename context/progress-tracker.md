@@ -6,10 +6,10 @@ Update this file after every completed feature. Any AI agent reading this should
 
 ## Current Status
 
-**Phase:** Phase 2, Profile Page
-**Last completed:** 08 Resume PDF Generation from Profile
+**Phase:** Phase 3, Find Jobs Page
+**Last completed:** 09 Find Jobs Page Full UI
 **In progress:** None
-**Next:** 09 Find Jobs Page Full UI
+**Next:** 10 Adzuna Job Discovery
 
 ---
 
@@ -31,7 +31,7 @@ Update this file after every completed feature. Any AI agent reading this should
 
 ### Phase 3 — Find Jobs Page
 
-- [ ] 09 Find Jobs Page — Full UI
+- [x] 09 Find Jobs Page — Full UI
 - [ ] 10 Adzuna Job Discovery
 - [ ] 11 Filter + Sort + Pagination
 
@@ -69,5 +69,6 @@ Update this file after every completed feature. Any AI agent reading this should
 - Feature 06 replaced all profile placeholders with authenticated reads and explicit partial saves. Valid PDF upload, private read, replacement, invalid file preservation, deletion, immutable first completion, lint, strict TypeScript, production build, and signed out denial passed runtime verification.
 - Feature 07 adds authenticated extraction from the active private PDF with externalized `pdf-parse`, GPT-4o Structured Outputs, strict Zod validation, an overwrite warning, and review before save. Lint, strict TypeScript, production build, synthetic PDF parsing, live GPT-4o schema parsing, signed out denial, the active resume action, overwrite confirmation, and authenticated form population passed. The engineer confirmed the complete extraction journey in the real profile page.
 - Feature 08 adds authenticated generation from the complete saved profile with GPT-4o Structured Outputs, a deterministic `@react-pdf/renderer` A4 template, one page validation, unique owner scoped storage keys, exact returned key activation, prior object cleanup, and immediate view and extraction access. User runtime verification plus live database and storage inspection confirmed one active pointer, one matching object, and no duplicate orphan files. Lint, strict TypeScript, production build, live GPT-4o generation, PDF parsing, and visual inspection passed.
+- Feature 09 adds the protected `/find-jobs` UI facade from `context/designs/find-jobs.png`, with typed mock results, local filtering, sorting, search feedback, responsive table overflow, and pagination. Real discovery remains Feature 10.
 
 _Add notes here as the build progresses — workarounds, patterns, anything that differs from the context files._
