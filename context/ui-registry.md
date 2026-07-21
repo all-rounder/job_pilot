@@ -31,7 +31,7 @@ After building any component — update this file with the component name, file 
 - `app/(auth)/login/page.tsx`: responsive two panel sign in screen with brand context, provider actions, legal links, and an announced retryable error state
 - `components/auth/OAuthButton.tsx`: full width provider action using `min-h-12`, `rounded-lg`, token borders, hover accent, focus ring, disabled opacity, and `useFormStatus` loading copy
 - `components/auth/SignOutButton.tsx`: bordered session action using `min-h-11`, token hover and focus states, disabled opacity, and `useFormStatus` loading copy
-- `app/(protected)/dashboard/page.tsx`: temporary authenticated landing surface until Feature 14 replaces it with the full dashboard
+- `app/(protected)/dashboard/page.tsx`: protected dashboard route with authenticated greeting and dashboard facade
 - `app/(protected)/profile/page.tsx`: protected profile route with page metadata, authenticated InsForge profile loading, empty state fallback, and derived completion data
 
 ### Profile
@@ -56,3 +56,19 @@ After building any component — update this file with the component name, file 
 - `lib/jobs.ts`: shared Find Jobs query normalization, URL serialization, page metadata, and owner scoped database listing helper
 - Find Jobs inputs use `min-h-11` or `min-h-14`, `rounded-md`, token borders and surfaces, token focus rings, and native select controls
 - Find Jobs result rows use `border-border`, `bg-surface-secondary` hover states, token score colors, and horizontal overflow below the desktop table width
+
+### Job Details
+
+- `app/(protected)/find-jobs/[id]/page.tsx`: protected owner scoped server route for an individual saved job
+- `components/job-details/JobDetailsPage.tsx`: responsive job details surface with header actions, metadata cards, match reasoning, skill badges, description, research empty state, and apply action
+- `components/job-details/CompanyResearch.tsx`: interactive company research card with empty, loading, error, populated, refresh, accessible live status, dossier sections, and source list
+- `lib/job-details.ts`: owner scoped job details query and shared job detail type
+- Job details cards use `rounded-2xl`, `border-border`, `bg-surface`, `p-6`, and `shadow-sm`
+- Company research actions use `min-h-11`, token accent states, visible focus rings, disabled loading state, and `aria-live` announcements
+
+### Dashboard
+
+- `components/dashboard/DashboardPage.tsx`: responsive dashboard shell with active navigation, stat cards, recent activity, typed mock charts, empty state branches, and accessible chart summaries
+- `lib/dashboard-placeholder.ts`: typed placeholder view models for stats, activity, and chart series, reserved for Features 15 through 17 to replace with live sources
+- Dashboard cards use `rounded-xl`, `border-border`, `bg-surface`, responsive padding, and `shadow-sm`
+- Dashboard chart colors use `text-accent`, `text-info`, and `text-success` with `currentColor` SVG fills and strokes

@@ -6,10 +6,10 @@ Update this file after every completed feature. Any AI agent reading this should
 
 ## Current Status
 
-**Phase:** Phase 3, Find Jobs Page
-**Last completed:** 11 Filter + Sort + Pagination, implementation and runtime verification complete with one deferred failure scenario
-**In progress:** 12 Job Details Page Full UI
-**Next:** 12 Job Details Page Full UI
+**Phase:** Phase 4, Job Details Page
+**Last completed:** 12 Job Details Page Full UI, implementation complete, lint, TypeScript, and production build passed
+**In progress:** 14 Dashboard Page, implementation complete, lint, TypeScript, and production build passed, runtime verification pending
+**Next:** 15 Stats Bar Real Data
 
 ---
 
@@ -37,12 +37,12 @@ Update this file after every completed feature. Any AI agent reading this should
 
 ### Phase 4 — Job Details Page
 
-- [ ] 12 Job Details Page — Full UI
-- [ ] 13 Company Research Agent
+- [x] 12 Job Details Page — Full UI
+- [~] 13 Company Research Agent, implementation complete, runtime verification pending
 
 ### Phase 5 — Dashboard
 
-- [ ] 14 Dashboard Page — Full UI
+- [~] 14 Dashboard Page — Full UI, implementation complete, lint, TypeScript, and production build passed, runtime verification pending
 - [ ] 15 Stats Bar — Real Data
 - [ ] 16 Recent Activity — Real Data
 - [ ] 17 Analytics Charts — PostHog Data
@@ -72,6 +72,11 @@ Update this file after every completed feature. Any AI agent reading this should
 - Feature 09 adds the protected `/find-jobs` UI facade from `context/designs/find-jobs.png`, with typed mock results, local filtering, sorting, search feedback, responsive table overflow, and pagination. Real discovery remains Feature 10.
 - Feature 10 adds the authenticated Adzuna search route, GPT-4o scoring, owner scoped persistence, duplicate safe retries, partial result warnings, PostHog events, and real search wiring in the Find Jobs facade. Lint, strict TypeScript, production build, authenticated live search, signed out denial, and duplicate retry verification pass. Duplicate retries now return the existing owner scoped jobs for display without creating new rows. AC-9 partial scoring and AC-10 provider failure paths are implemented but their forced runtime scenarios are deferred until after the remaining features are built. Feature 10 remains incomplete and must be revisited before final acceptance.
 - Feature 11 replaces the local Find Jobs listing with owner scoped InsForge reads through the protected server page and `GET /api/jobs`. URL state uses `q`, `match`, `sort`, and `page`, with server filtering, deterministic sorting, count metadata, safe page bounds, and eight row pages for testing. Loading, empty, retryable error, refresh, and browser navigation behavior are implemented. Lint, strict TypeScript, and production build pass. Authenticated runtime verification remains for `/check verify`.
+- Feature 12 adds the owner scoped `/find-jobs/[id]` details route and complete job details surface from `context/designs/job-details.png`. It renders real saved job data for the header, metadata, match reasoning, skills, description, and apply links. Company research remains the empty state owned by Feature 13. Find Jobs company and role cells now link to details. `npm run lint`, `npx tsc --noEmit`, and `npm run build` pass.
+- Feature 13 adds the owner scoped synchronous `/api/agent/research` route, one existing `agent_runs` row per research invocation, safe related logs, Browserbase plus Stagehand company browsing, GPT 4o dossier synthesis, validated atomic job persistence, refresh protection, PostHog capture, and interactive empty, loading, error, populated, and refresh states on job details. `npx tsc --noEmit`, `npm run lint`, and `npm run build` pass. Authenticated runtime verification remains for `/check verify`.
+- Feature 13 verification blocker, recorded 2026-07-21: the authenticated Chrome connector can see the JobPilot localhost tab, but its DOM access policy rejects `localhost:3000` after reconnecting. The app responds with HTTP 200 locally, so the remaining blocker is the browser control environment. Retry `/check verify 13` when Chrome localhost access is available. Feature 14 Dashboard Page is the next build slice.
+- Feature 14 replaces the authentication placeholder with the responsive dashboard facade from `context/designs/dashboard.png`, typed mock stats and activity, accessible inline charts, and empty state branches. Lint, strict TypeScript, and production build pass. Authenticated runtime verification remains for `/check verify` before Feature 14 is complete.
+- Feature 14 verification blocker, recorded 2026-07-22: `/dashboard` responded from the running app and Chrome found the authenticated Dashboard tab, but Chrome policy rejected DOM access to `localhost:3000`. No screenshot or UI interaction could be captured. Retry `/check verify 14` when localhost browser access works.
 - Feature 11 runtime verification passed for the authenticated listing, text and match filters, sorting, eight row pagination, URL state, browser history, empty state, and signed out access. `npm run lint`, `npx tsc --noEmit`, and `npm run build` passed. The database failure retry state described in [Feature 11 AC-8](../docs/specs/0008-database-backed-job-listing.md#requirements) was not forced. This means intentionally causing the jobs database read to fail, confirming the safe error message appears, confirming the current filters remain visible, and confirming `Try again` retries the listing. It remains the only deferred verification scenario before final phase acceptance.
 
 _Add notes here as the build progresses — workarounds, patterns, anything that differs from the context files._
