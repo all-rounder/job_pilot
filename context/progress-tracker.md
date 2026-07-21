@@ -7,9 +7,9 @@ Update this file after every completed feature. Any AI agent reading this should
 ## Current Status
 
 **Phase:** Phase 3, Find Jobs Page
-**Last completed:** 09 Find Jobs Page Full UI
-**In progress:** 10 Adzuna Job Discovery
-**Next:** 11 Filter + Sort + Pagination
+**Last completed:** 11 Filter + Sort + Pagination, implementation and runtime verification complete with one deferred failure scenario
+**In progress:** 12 Job Details Page Full UI
+**Next:** 12 Job Details Page Full UI
 
 ---
 
@@ -33,7 +33,7 @@ Update this file after every completed feature. Any AI agent reading this should
 
 - [x] 09 Find Jobs Page — Full UI
 - [~] 10 Adzuna Job Discovery, implementation complete, authenticated runtime verification passed
-- [ ] 11 Filter + Sort + Pagination
+- [~] 11 Filter + Sort + Pagination, implementation complete, lint, TypeScript, production build, authenticated listing, URL filters, sorting, pagination, empty state, and signed out denial verified. The database failure retry state remains deferred. See [Feature 11 AC-8](../docs/specs/0008-database-backed-job-listing.md#requirements): a failed `GET /api/jobs` database read must preserve the active filters and show the safe error message with a `Try again` action.
 
 ### Phase 4 — Job Details Page
 
@@ -71,5 +71,7 @@ Update this file after every completed feature. Any AI agent reading this should
 - Feature 08 adds authenticated generation from the complete saved profile with GPT-4o Structured Outputs, a deterministic `@react-pdf/renderer` A4 template, one page validation, unique owner scoped storage keys, exact returned key activation, prior object cleanup, and immediate view and extraction access. User runtime verification plus live database and storage inspection confirmed one active pointer, one matching object, and no duplicate orphan files. Lint, strict TypeScript, production build, live GPT-4o generation, PDF parsing, and visual inspection passed.
 - Feature 09 adds the protected `/find-jobs` UI facade from `context/designs/find-jobs.png`, with typed mock results, local filtering, sorting, search feedback, responsive table overflow, and pagination. Real discovery remains Feature 10.
 - Feature 10 adds the authenticated Adzuna search route, GPT-4o scoring, owner scoped persistence, duplicate safe retries, partial result warnings, PostHog events, and real search wiring in the Find Jobs facade. Lint, strict TypeScript, production build, authenticated live search, signed out denial, and duplicate retry verification pass. Duplicate retries now return the existing owner scoped jobs for display without creating new rows. AC-9 partial scoring and AC-10 provider failure paths are implemented but their forced runtime scenarios are deferred until after the remaining features are built. Feature 10 remains incomplete and must be revisited before final acceptance.
+- Feature 11 replaces the local Find Jobs listing with owner scoped InsForge reads through the protected server page and `GET /api/jobs`. URL state uses `q`, `match`, `sort`, and `page`, with server filtering, deterministic sorting, count metadata, safe page bounds, and eight row pages for testing. Loading, empty, retryable error, refresh, and browser navigation behavior are implemented. Lint, strict TypeScript, and production build pass. Authenticated runtime verification remains for `/check verify`.
+- Feature 11 runtime verification passed for the authenticated listing, text and match filters, sorting, eight row pagination, URL state, browser history, empty state, and signed out access. `npm run lint`, `npx tsc --noEmit`, and `npm run build` passed. The database failure retry state described in [Feature 11 AC-8](../docs/specs/0008-database-backed-job-listing.md#requirements) was not forced. This means intentionally causing the jobs database read to fail, confirming the safe error message appears, confirming the current filters remain visible, and confirming `Try again` retries the listing. It remains the only deferred verification scenario before final phase acceptance.
 
 _Add notes here as the build progresses — workarounds, patterns, anything that differs from the context files._

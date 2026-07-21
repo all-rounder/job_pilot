@@ -51,6 +51,8 @@ After building any component — update this file with the component name, file 
 ### Find Jobs
 
 - `app/(protected)/find-jobs/page.tsx`: protected route metadata and server page wrapper
-- `components/find-jobs/FindJobsPage.tsx`: token based Find Jobs header, real search controls with loading and error states, success and partial result banner, filter toolbar, score bars, and pagination with local interactions
+- `components/find-jobs/FindJobsPage.tsx`: token based Find Jobs header, real search controls with loading and error states, success and partial result banner, URL backed filter toolbar, server sourced score rows, empty and retry states, and eight row pagination
+- `app/api/jobs/route.ts`: authenticated owner scoped paged job listing read with URL filters, sorting, total counts, and safe errors
+- `lib/jobs.ts`: shared Find Jobs query normalization, URL serialization, page metadata, and owner scoped database listing helper
 - Find Jobs inputs use `min-h-11` or `min-h-14`, `rounded-md`, token borders and surfaces, token focus rings, and native select controls
 - Find Jobs result rows use `border-border`, `bg-surface-secondary` hover states, token score colors, and horizontal overflow below the desktop table width
