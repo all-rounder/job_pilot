@@ -68,7 +68,9 @@ After building any component — update this file with the component name, file 
 
 ### Dashboard
 
-- `components/dashboard/DashboardPage.tsx`: responsive dashboard shell with active navigation, stat cards, recent activity, typed mock charts, empty state branches, and accessible chart summaries
-- `lib/dashboard-placeholder.ts`: typed placeholder view models for stats, activity, and chart series, reserved for Features 15 through 17 to replace with live sources
+- `components/dashboard/DashboardPage.tsx`: responsive dashboard shell with active navigation, live stat cards, live recent activity, typed mock charts, empty state branches, and accessible chart summaries
+- `lib/dashboard-placeholder.ts`: typed placeholder view models for activity and chart series, reserved for Features 16 and 17 to replace with live sources
+- `lib/dashboard-stats.ts`: owner scoped InsForge aggregates for the dashboard stat cards
+- `lib/dashboard-activity.ts`: owner scoped merge of completed search runs and successful company research logs into the five item dashboard activity view
 - Dashboard cards use `rounded-xl`, `border-border`, `bg-surface`, responsive padding, and `shadow-sm`
 - Dashboard chart colors use `text-accent`, `text-info`, and `text-success` with `currentColor` SVG fills and strokes

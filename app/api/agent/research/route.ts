@@ -27,8 +27,9 @@ async function writeAgentLog(
   userId: string,
   level: "info" | "success" | "warning" | "error",
   message: string,
+  jobId?: string,
 ): Promise<void> {
-  const { error } = await database.from("agent_logs").insert({ run_id: runId, user_id: userId, job_id: null, level, message });
+  const { error } = await database.from("agent_logs").insert({ run_id: runId, user_id: userId, job_id: jobId ?? null, level, message });
   if (error) console.error("[agent/research:log]", error);
 }
 
@@ -81,7 +82,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
     const { data: run, error: runError } = await database
       .from("agent_runs")
-      .insert({ user_id: user.id, job_title_searched: `Company research: ${job.title}`, location_searched: null })
+      .insert({ user_id: user.id, job_title_searched: `Company research: ${job.title}`, location_searched: null, completed_at: new Date().toISOString() })
       .select("id")
       .single();
     if (runError || !run) {
@@ -102,7 +103,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
     if (!result.success) {
       await writeAgentLog(database, runId, user.id, "error", "Company research failed.");
-      await database.from("agent_runs").update({ status: "failed" }).eq("id", runId).eq("user_id", user.id);
+      await database.from("agent_runs").update({ status: "failed", completed_at: new Date().toISOString() }).eq("id", runId).eq("user_id", user.id);
       return errorResponse("We could not complete company research. Please retry.", 502);
     }
 
@@ -113,19 +114,19 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       .eq("user_id", user.id);
     if (updateError) {
       await writeAgentLog(database, runId, user.id, "error", "Company research could not be saved.");
-      await database.from("agent_runs").update({ status: "failed" }).eq("id", runId).eq("user_id", user.id);
+      await database.from("agent_runs").update({ status: "failed", completed_at: new Date().toISOString() }).eq("id", runId).eq("user_id", user.id);
       console.error("[agent/research:save]", safeErrorDetails(updateError));
       return errorResponse("We could not save company research. Please retry.", 500);
     }
 
-    await writeAgentLog(database, runId, user.id, "success", "Company research saved.");
-    await database.from("agent_runs").update({ status: "completed" }).eq("id", runId).eq("user_id", user.id);
+    await writeAgentLog(database, runId, user.id, "success", "Company research saved.", parsed.data.jobId);
+    await database.from("agent_runs").update({ status: "completed", completed_at: new Date().toISOString() }).eq("id", runId).eq("user_id", user.id);
     posthog?.capture({ distinctId: user.id, event: "company_researched", properties: { userId: user.id, jobId: parsed.data.jobId, company: job.company } });
     return NextResponse.json({ success: true, data: { jobId: parsed.data.jobId, dossier: result.dossier, refreshed: Boolean(parsed.data.force) } });
   } catch (error) {
     if (database && runId && userId) {
       await writeAgentLog(database, runId, userId, "error", "Company research failed unexpectedly.");
-      await database.from("agent_runs").update({ status: "failed" }).eq("id", runId).eq("user_id", userId);
+      await database.from("agent_runs").update({ status: "failed", completed_at: new Date().toISOString() }).eq("id", runId).eq("user_id", userId);
     }
     console.error("[agent/research]", safeErrorDetails(error));
     return errorResponse("We could not complete company research. Please retry.", 500);
